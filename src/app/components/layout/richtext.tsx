@@ -5,13 +5,14 @@ import {
   type JSXConvertersFunction,
   RichText as RichTextWithoutBlocks,
 } from '@payloadcms/richtext-lexical/react'
-import QuoteBlock from '../blocks/quote'
-
+import ListBlock from '../blocks/list.block'
+import QuoteBlock from '../blocks/quote.block'
 //@ts-expect-error TODO: Fix this
 type NodeTypes = DefaultNodeTypes | SerializedBlockNode<unknown>
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
   ...defaultConverters,
+  list: ({ node }) => <ListBlock {...node} />,
   quote: ({ node }) => <QuoteBlock {...node} />,
   blocks: {},
 })

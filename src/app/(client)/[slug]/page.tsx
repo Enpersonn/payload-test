@@ -22,9 +22,9 @@ export default async function Page(props: PageProps) {
   })
   const pageData = page.docs[0]
   return (
-    <div className="flex flex-col items-center justify-center bg-slate-400">
+    <>
       <div className="text-2xl font-bold">{pageData.title}</div>
       <RichText data={pageData.content as SerializedEditorState} />
-    </div>
+    </>
   )
 }
