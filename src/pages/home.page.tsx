@@ -1,9 +1,9 @@
 "use client";
-import Grid from "@/app/components/layout/Grid";
+import Grid from "@/components/layout/Grid";
 import { cn } from "@/lib/utils";
 import { useEffect, useReducer, useRef } from "react";
 import { ALBUMES } from "@/lib/Album.demo";
-import { AlbumHero } from "@/app/components/pages/front-page/album-hero";
+import { AlbumHero } from "@/components/pages/front-page/album-hero";
 
 const albumReducer = (state: number, action: { type: string }) => {
   switch (action.type) {

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { Album } from "@/types/album.type";
 import Image from "next/image";
-import SongsList from "@/app/components/songs-list";
+import SongsList from "@/components/songs-list";
 import ToggleAlbum from "./toggle-album";
 import AlbumHeroBackground from "./album-hero-background";
 

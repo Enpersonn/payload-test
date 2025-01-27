@@ -1,8 +1,8 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
-import RichText from "@/app/components/layout/richtext";
+import RichText from "@/components/layout/richtext";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
-import Grid from "@/app/components/layout/Grid";
+import Grid from "@/components/layout/Grid";
 
 type PageProps = {
   params: Promise<{
