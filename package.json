@@ -20,6 +20,7 @@
     "@payloadcms/next": "latest",
     "@payloadcms/payload-cloud": "latest",
     "@payloadcms/richtext-lexical": "latest",
+    "@payloadcms/storage-uploadthing": "^3.19.0",
     "@payloadcms/ui": "^3.19.0",
     "@tanstack/react-query": "^5.64.2",
     "axios": "^1.7.9",

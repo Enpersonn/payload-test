@@ -1,7 +1,7 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import path from "node:path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "node:url";
@@ -31,9 +31,21 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || "",
     },
   }),
+  upload: {
+    limits: {
+      fileSize: 5000000, // 5MB
+    },
+  },
   sharp,
   plugins: [
-    payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    uploadthingStorage({
+      collections: {
+        media: true,
+      },
+      options: {
+        token: process.env.UPLOADTHING_TOKEN || "",
+        acl: "public-read",
+      },
+    }),
   ],
 });
