@@ -5,7 +5,6 @@ export const GridSize = {
   sm: "sm",
   md: "md",
   lg: "lg",
-  xl: "xl",
 } as const;
 
 interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,7 +26,7 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     return (
       <div
         className={cn(
-          "grid grid-cols-12 gap-4 max-w-7xl mx-auto h-full w-full",
+          "grid grid-cols-12 gap-4 max-w-7xl px-4 mx-auto h-full w-full",
           className
         )}
         ref={ref}
@@ -45,15 +44,10 @@ Grid.Item = React.forwardRef<HTMLDivElement, GridItemProps>(
       <div
         className={cn(
           {
-            "col-span-4": size === "sm",
-            "col-span-8": size === "md",
-            "col-span-12": size === "lg" || size === "xl",
-            "col-start-8": size === "sm",
-            "col-start-3": size === "md",
-            "col-start-2": size === "lg",
-            "col-start-1": size === "xl",
+            "col-span-4 col-start-8": size === "sm",
+            "col-span-8 col-start-3": size === "md",
+            "col-span-12 col-start-1": size === "lg",
           },
-          "h-full w-full",
           className
         )}
         ref={ref}

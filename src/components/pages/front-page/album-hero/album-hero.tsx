@@ -20,7 +20,7 @@ const AlbumHero = ({
   handleAlbumChange: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }) => {
   return (
-    <div className="relative flex aspect-video items-center justify-center py-10 overflow-hidden w-full">
+    <div className="relative flex aspect-video items-center justify-center overflow-hidden w-full">
       <ToggleAlbum handleAlbumChange={handleAlbumChange} />
       <div className="absolute z-10 flex w-full h-full items-center justify-center gap-4">
         {albums.map((album) => {
@@ -39,7 +39,7 @@ const AlbumHero = ({
                   id === prevId && "translate-y-[5vh] -translate-x-[35vw]",
                   id === nextId && "translate-y-[5vh] translate-x-[35vw]",
                   id === curId && "opacity-100 scale-150 static",
-                  id !== curId && "opacity-0 scale-50"
+                  id !== curId && "opacity-0 scale-0"
                 )}
               >
                 <div className=" bg-background rounded-lg border size-24 ">

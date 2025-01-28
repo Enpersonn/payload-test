@@ -17,6 +17,7 @@ const AlbumHeroBackground = ({
             key={album.id}
             src={album.albumImage}
             alt={album.name}
+            priority={album.id === currentAlbum.id}
             fill
             className={cn(
               "absolute w-full h-full transition-opacity duration-300 aspect-video",
