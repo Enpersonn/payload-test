@@ -1,8 +1,11 @@
-import { Inter } from "next/font/google";
+import { Smooch_Sans } from "next/font/google";
 import "./globals.css";
 import ClientProvider from "@/providers/client-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const smoochSans = Smooch_Sans({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata = {
   title: "MUSIC",
@@ -16,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={smoochSans.className}>
         <ClientProvider>{children}</ClientProvider>
       </body>
     </html>

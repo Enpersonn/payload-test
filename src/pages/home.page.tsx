@@ -1,76 +1,44 @@
 "use client";
 import Grid from "@/components/layout/Grid";
 import { cn } from "@/lib/utils";
-import { useEffect, useReducer, useRef } from "react";
-import { ALBUMES } from "@/lib/Album.demo";
+import { useEffect, useRef, useState } from "react";
 import { AlbumHero } from "@/components/pages/front-page/album-hero";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
-const albumReducer = (state: number, action: { type: string }) => {
-  switch (action.type) {
-    case "NEXT":
-      return (state + 1) % ALBUMES.length;
-    case "PREV":
-      return (state - 1 + ALBUMES.length) % ALBUMES.length;
-    default:
-      return state;
-  }
-};
 export default function HomePage() {
-  const [albumIndex, dispatch] = useReducer(albumReducer, 0);
+  const [backgroundColor, setBackgroundColor] = useState<string>("");
   const backgroundRef = useRef<HTMLDivElement>(null);
-  const currentAlbum = ALBUMES[albumIndex];
-  const prevAlbum = ALBUMES[(albumIndex + 1) % ALBUMES.length] || ALBUMES[0];
-  const nextAlbum =
-    ALBUMES[(albumIndex - 1 + ALBUMES.length) % ALBUMES.length] ||
-    ALBUMES[ALBUMES.length - 1];
-
-  const handleAlbumChange = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const direction = e.currentTarget.value;
-    if (direction === "left") {
-      dispatch({ type: "PREV" });
-    } else {
-      dispatch({ type: "NEXT" });
-    }
-  };
 
   useEffect(() => {
     if (backgroundRef.current) {
-      backgroundRef.current.style.backgroundColor = currentAlbum.color;
+      backgroundRef.current.style.backgroundColor = backgroundColor;
     }
-  }, [currentAlbum.color]);
+  }, [backgroundColor]);
 
   return (
     <div
       ref={backgroundRef}
       className={cn(
-        `bg-[${currentAlbum.color}]`,
+        `bg-gradient-to-t from-background to-[${backgroundColor}]`,
         "transition-colors duration-500 w-full "
       )}
     >
       <Grid className="mt-10">
         <Grid.Item size="lg">
-          <AlbumHero
-            albumIndex={albumIndex}
-            nextAlbum={nextAlbum}
-            prevAlbum={prevAlbum}
-            currentAlbum={currentAlbum}
-            albums={ALBUMES}
-            handleAlbumChange={handleAlbumChange}
-          />
+          <AlbumHero setBackgroundColor={setBackgroundColor} />
         </Grid.Item>
         <Grid.Item size="md" className="flex items-center justify-center gap-4">
-          <Twitter className="hover:fill-muted-foreground" />
-          <Youtube className="hover:fill-muted-foreground" />
-          <Instagram className="hover:fill-muted-foreground" />
-          <Facebook className="hover:fill-muted-foreground" />
+          <Twitter className="hover:text-muted-foreground text-foreground" />
+          <Youtube className="hover:text-muted-foreground text-foreground" />
+          <Instagram className="hover:text-muted-foreground text-foreground" />
+          <Facebook className="hover:text-muted-foreground text-foreground" />
         </Grid.Item>
-        <Grid.Item size="md">
+        <Grid.Item size="md" className=" mt-20">
           <div className="text-center">
             <h2>Tour Dates</h2>
           </div>
         </Grid.Item>
-        <Grid.Item size="md" className="text-center gap-4 ">
+        <Grid.Item size="md" className="text-center gap-4 mt-20">
           <h2>Subscribe</h2>
           <form className="flex flex-col items-center justify-center gap-4 mt-10">
             <input

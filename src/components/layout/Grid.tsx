@@ -26,7 +26,7 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     return (
       <div
         className={cn(
-          "grid grid-cols-12 gap-4 max-w-7xl px-4 mx-auto h-full w-full",
+          "grid grid-cols-12 gap-4 max-w-7xl px-4 mx-auto  w-full",
           className
         )}
         ref={ref}

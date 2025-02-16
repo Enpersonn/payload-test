@@ -1,14 +1,17 @@
+"use client";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useMemo } from "react";
 
 const Logo = ({ className }: { className?: string }) => {
-  const theme = useTheme();
+  const { resolvedTheme } = useTheme();
 
-  const logo =
-    theme.resolvedTheme === "dark"
+  const logo = useMemo(() => {
+    return resolvedTheme === "dark"
       ? "/logo/M_Logo_Dark.svg"
       : "/logo/M_Logo_Light.svg";
+  }, [resolvedTheme]);
 
   return (
     <Image

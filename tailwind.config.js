@@ -59,6 +59,9 @@ const config = {
       animation: {
         "fade-in": "fade-in 0.5s ease-out forwards",
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

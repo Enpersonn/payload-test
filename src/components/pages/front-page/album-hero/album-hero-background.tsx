@@ -1,14 +1,27 @@
 import { cn } from "@/lib/utils";
-import type { Album } from "@/types/album.type";
 import Image from "next/image";
+import { useEffect } from "react";
+import { useAlbumCarousel } from "@/providers/album-carousel-provider";
 
 const AlbumHeroBackground = ({
-  currentAlbum,
-  albums,
+  setBackgroundColor,
 }: {
-  currentAlbum: Album;
-  albums: Album[];
+  setBackgroundColor: (backgroundColor: string) => void;
 }) => {
+  const { dispatch, albums, currentAlbum } = useAlbumCarousel();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch({ type: "NEXT" });
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!currentAlbum) return;
+    setBackgroundColor(currentAlbum.color);
+  }, [currentAlbum, setBackgroundColor]);
+
   return (
     <div className="absolute w-full h-full">
       <div className="relative w-full h-full">
@@ -17,11 +30,11 @@ const AlbumHeroBackground = ({
             key={album.id}
             src={album.albumImage}
             alt={album.name}
-            priority={album.id === currentAlbum.id}
+            priority={album.id === currentAlbum?.id}
             fill
             className={cn(
               "absolute w-full h-full transition-opacity duration-300 aspect-video",
-              album.id === currentAlbum.id ? "opacity-100" : "opacity-0"
+              album.id === currentAlbum?.id ? "opacity-100" : "opacity-0"
             )}
           />
         ))}
